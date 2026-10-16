@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>호주 여행 필수 매뉴얼 · 처음 가는 사람을 위한 가이드</title>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Black+Han+Sans&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F6FAFC;
+    --sky: #BFE3F5;
+    --ocean: #2662A8;
+    --teal: #2E9C9C;
+    --eucalyptus: #4F9C82;
+    --dark: #123B4D;
+    --brown: #3E6478;
+    --mid: #5C8194;
+    --card-radius: 20px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: var(--cream);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* === HEADER === */
+  header {
+    background: linear-gradient(135deg, #BFE3F5 0%, #C9EAE6 48%, #B7DFC8 100%);
+    padding: 48px 32px 36px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: -40px; left: -40px;
+    width: 160px; height: 160px;
+    background: rgba(255,255,255,0.3);
+    border-radius: 50%;
+  }
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: -30px; right: -20px;
+    width: 120px; height: 120px;
+    background: rgba(255,255,255,0.22);
+    border-radius: 50%;
+  }
+  .header-emoji { font-size: 56px; display: block; margin-bottom: 12px; animation: bounce 2s ease-in-out infinite; }
+  @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+  header h1 {
+    font-family: 'Black Han Sans', sans-serif;
+    font-size: 30px;
+    color: var(--dark);
+    letter-spacing: -1px;
+    position: relative; z-index: 1;
+  }
+  header p {
+    margin-top: 8px;
+    font-family: 'Gowun Dodum', sans-serif;
+    font-size: 15px;
+    color: var(--brown);
+    opacity: 0.9;
+    position: relative; z-index: 1;
+  }
+
+  /* === CATEGORY TABS === */
+  .tabs {
+    display: flex;
+    gap: 8px;
+    padding: 20px 24px 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab {
+    flex-shrink: 0;
+    padding: 8px 18px;
+    border-radius: 999px;
+    border: 2px solid transparent;
+    background: white;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--mid);
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+  .tab.active, .tab:hover {
+    background: linear-gradient(135deg, var(--ocean), var(--eucalyptus));
+    color: white;
+    border-color: transparent;
+  }
+
+  /* === GRID === */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 16px;
+    padding: 20px 24px 40px;
+  }
+
+  /* === CARD === */
+  .card {
+    background: white;
+    border-radius: var(--card-radius);
+    padding: 24px 16px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
+    border: 2.5px solid transparent;
+    animation: fadeUp 0.4s ease both;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.10);
+    border-color: var(--teal);
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 5px;
+    background: var(--accent, var(--ocean));
+    border-radius: var(--card-radius) var(--card-radius) 0 0;
+  }
+  .card-emoji { font-size: 38px; display: block; margin-bottom: 10px; }
+  .card-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--dark);
+    line-height: 1.4;
+    margin-bottom: 4px;
+  }
+  .card-sub {
+    font-size: 11px;
+    color: var(--mid);
+    font-family: 'Gowun Dodum', sans-serif;
+  }
+  .card-tag {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 600;
+    background: var(--accent-light, #E2F2FA);
+    color: var(--accent-text, #145374);
+  }
+
+  /* === MODAL === */
+  .overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(18,59,77,0.45);
+    backdrop-filter: blur(4px);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .overlay.open { display: flex; }
+
+  .modal-wrapper {
+    position: relative;
+    max-width: 480px;
+    width: 100%;
+  }
+
+  .modal {
+    background: white;
+    border-radius: 28px;
+    max-width: 100%;
+    width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    position: relative;
+    animation: popIn 0.3s cubic-bezier(0.34,1.56,0.64,1) both;
+    scrollbar-width: thin;
+    scrollbar-color: var(--teal) transparent;
+  }
+  @keyframes popIn {
+    from { opacity: 0; transform: scale(0.85); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+
+  .modal-top {
+    padding: 32px 28px 24px;
+    background: linear-gradient(135deg, var(--modal-c1, #BFE3F5), var(--modal-c2, #EAF7FD));
+    border-radius: 28px 28px 0 0;
+  }
+  .modal-emoji { font-size: 52px; display: block; margin-bottom: 8px; }
+  .modal-title {
+    font-family: 'Black Han Sans', sans-serif;
+    font-size: 22px;
+    color: var(--dark);
+    letter-spacing: -0.5px;
+  }
+  .modal-desc {
+    margin-top: 6px;
+    font-size: 13px;
+    color: var(--brown);
+    font-family: 'Gowun Dodum', sans-serif;
+    line-height: 1.6;
+  }
+
+  .modal-body { padding: 24px 28px 32px; }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 12px;
+    padding-bottom: 6px;
+    border-bottom: 2px dashed #E4EEF2;
+  }
+
+  .tip-list { list-style: none; margin-bottom: 24px; }
+  .tip-list li {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    padding: 10px 0;
+    border-bottom: 1px solid #EAF4FF;
+    font-size: 14px;
+    color: var(--dark);
+    line-height: 1.6;
+  }
+  .tip-list li:last-child { border-bottom: none; }
+  .tip-num {
+    flex-shrink: 0;
+    width: 24px; height: 24px;
+    background: var(--modal-accent, var(--teal));
+    color: white;
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .warn-box {
+    background: #EEF7FF;
+    border-left: 4px solid #2E8BC0;
+    border-radius: 0 12px 12px 0;
+    padding: 14px 16px;
+    font-size: 13px;
+    color: #123B4D;
+    line-height: 1.6;
+    margin-bottom: 24px;
+    font-family: 'Gowun Dodum', sans-serif;
+  }
+  .warn-box strong { display: block; margin-bottom: 4px; font-weight: 700; }
+
+  .fact-badge {
+    display: inline-flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  .fact-pill {
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+    background: var(--modal-accent-light, #FFE4C2);
+    color: var(--brown);
+  }
+
+  .close-btn {
+    position: absolute;
+    top: -16px;
+    right: -16px;
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    border: none;
+    background: white;
+    color: var(--dark);
+    font-size: 18px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.22);
+    transition: background 0.15s, transform 0.15s;
+    z-index: 200;
+  }
+  .close-btn:hover { background: var(--cream); transform: scale(1.1); }
+
+  /* === HIDDEN === */
+  .card.hidden { display: none; }
+
+  /* === HEADER CONTROLS === */
+  .header-controls {
+    position: absolute;
+    top: 14px; right: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    z-index: 10;
+  }
+  .ctrl-btn {
+    width: 38px; height: 38px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255,255,255,0.78);
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+    transition: background 0.15s, transform 0.15s;
+    backdrop-filter: blur(4px);
+    color: var(--dark);
+    line-height: 1;
+  }
+  .ctrl-btn:hover { background: white; transform: scale(1.1); }
+
+  @media (max-width: 430px) {
+    .ctrl-btn.zoom-btn { display: none; }
+  }
+
+  /* === SEARCH OVERLAY === */
+  .search-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(18,59,77,0.45);
+    backdrop-filter: blur(6px);
+    z-index: 300;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 60px 20px 20px;
+  }
+  .search-overlay.open { display: flex; }
+
+  .search-panel {
+    background: white;
+    border-radius: 24px;
+    width: 100%;
+    max-width: 520px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    overflow: hidden;
+    animation: popIn 0.25s cubic-bezier(0.34,1.56,0.64,1) both;
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .search-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 20px;
+    border-bottom: 2px solid #F0F0EA;
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 2;
+  }
+  .search-icon { font-size: 18px; flex-shrink: 0; }
+  .search-bar input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: var(--dark);
+    background: transparent;
+  }
+  .search-bar input::placeholder { color: #A8BAC4; }
+  .search-close {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    border: none;
+    background: #E0F2FF;
+    color: var(--mid);
+    font-size: 14px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.15s;
+  }
+  .search-close:hover { background: var(--teal); color: white; }
+
+  .search-results {
+    overflow-y: auto;
+    padding: 12px 16px 20px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--teal) transparent;
+  }
+  .search-empty {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--mid);
+    font-family: 'Gowun Dodum', sans-serif;
+    font-size: 15px;
+    line-height: 1.8;
+  }
+  .search-empty span { font-size: 36px; display: block; margin-bottom: 10px; }
+  .search-hint {
+    padding: 20px 8px 8px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--mid);
+  }
+
+  .result-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 12px;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: background 0.15s;
+    border-bottom: 1px solid #EAF4FF;
+  }
+  .result-card:last-child { border-bottom: none; }
+  .result-card:hover { background: #EEF6FF; }
+  .result-emoji { font-size: 30px; flex-shrink: 0; line-height: 1; margin-top: 2px; }
+  .result-info { flex: 1; min-width: 0; }
+  .result-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 3px;
+  }
+  .result-sub {
+    font-size: 12px;
+    color: var(--mid);
+    font-family: 'Gowun Dodum', sans-serif;
+    margin-bottom: 5px;
+  }
+  .result-snippet {
+    font-size: 12px;
+    color: var(--brown);
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .result-snippet mark {
+    background: #C8E8FF;
+    color: var(--dark);
+    border-radius: 3px;
+    padding: 0 2px;
+    font-style: normal;
+  }
+  .result-tag {
+    flex-shrink: 0;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 600;
+    background: #E0F2FF;
+    color: var(--mid);
+    margin-top: 4px;
+    white-space: nowrap;
+  }
+  .result-count {
+    font-size: 12px;
+    color: var(--mid);
+    padding: 8px 12px 4px;
+    font-family: 'Gowun Dodum', sans-serif;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-controls">
+    <button class="ctrl-btn" onclick="openSearch()" title="검색">🔍</button>
+    <button class="ctrl-btn zoom-btn" onclick="zoomIn()" title="확대">+</button>
+    <button class="ctrl-btn zoom-btn" onclick="zoomOut()" title="축소">−</button>
+    <button class="ctrl-btn zoom-btn" onclick="toggleFullscreen()" title="전체 화면" style="font-size:14px;">⤢</button>
+  </div>
+  <span class="header-emoji">🦘</span>
+  <h1>호주 여행 필수 매뉴얼</h1>
+  <p>처음 가는 사람을 위한 준비 체크리스트 & 현지 꿀팁</p>
+</header>
+
+<!-- 검색 오버레이 -->
+<div class="search-overlay" id="searchOverlay" onclick="closeSearchOverlay(event)">
+  <div class="search-panel">
+    <div class="search-bar">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="searchInput" placeholder="비자, 유심, 안전 등 키워드를 입력하세요..." oninput="doSearch()" />
+      <button class="search-close" onclick="closeSearch()">✕</button>
+    </div>
+    <div class="search-results" id="searchResults"></div>
+  </div>
+</div>
+
+<div class="tabs">
+  <button class="tab active" onclick="filterCards('all')">🌏 전체</button>
+  <button class="tab" onclick="filterCards('입출국')">🛂 입출국</button>
+  <button class="tab" onclick="filterCards('교통')">🚗 교통</button>
+  <button class="tab" onclick="filterCards('숙소')">🏨 숙소</button>
+  <button class="tab" onclick="filterCards('통신환전')">💳 통신·환전</button>
+  <button class="tab" onclick="filterCards('문화매너')">🙏 문화·매너</button>
+  <button class="tab" onclick="filterCards('안전건강')">⚕️ 안전·건강</button>
+  <button class="tab" onclick="filterCards('음식쇼핑')">🛍️ 음식·쇼핑</button>
+</div>
+
+<!-- 카드 그리드 -->
+<div class="grid" id="grid"></div>
+
+<!-- 모달 -->
+<div class="overlay" id="overlay" onclick="closeModal(event)">
+  <div class="modal-wrapper">
+    <button class="close-btn" onclick="closeModalDirect()">✕</button>
+    <div class="modal" id="modal">
+      <div class="modal-top" id="modal-top">
+      <span class="modal-emoji" id="modal-emoji"></span>
+      <div class="modal-title" id="modal-title"></div>
+      <div class="modal-desc" id="modal-desc"></div>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const DATA = [
+  {
+    emoji: "🛂",
+    title: "ETA 비자, 미리 신청하세요",
+    sub: "전자여행허가(ETA) 신청법",
+    tag: "입출국",
+    accent: "#2662A8",
+    accentLight: "#E1EBF6",
+    accentText: "#163F63",
+    modalC1: "#B7CDEA",
+    modalC2: "#E9F1FB",
+    modalAccent: "#2662A8",
+    modalAccentLight: "#CFE0F5",
+    facts: ["앱으로 신청", "수수료 약 AUD 20", "보통 몇 분 내 승인"],
+    desc: "호주는 무비자 국가가 아니라 전자여행허가(ETA)가 필요해요. 출발 전 미리 신청해두면 마음이 편해요.",
+    warn: { title: "⚠️ 놓치면 못 타요", text: "ETA 없이는 탑승 수속 자체가 거부될 수 있어요. 출발 최소 1~2주 전에는 신청을 마쳐두세요." },
+    tips: [
+      "Australia ETA 공식 앱(App Store/Google Play)에서 여권을 스캔해 간단히 신청할 수 있어요.",
+      "수수료는 약 20호주달러(AUD)이며, 신용카드로 결제할 수 있어요.",
+      "승인은 대부분 몇 분~몇 시간 내 나지만, 여유롭게 출발 2주 전쯤 신청하는 게 안전해요.",
+      "여권 유효기간이 최소 6개월 이상 남아있는지 미리 확인하세요.",
+      "ETA는 여권과 전자적으로 연동되므로 출력물을 따로 챙길 필요는 없어요."
+    ]
+  },
+  {
+    emoji: "📋",
+    title: "입국 신고 & 세관, 진짜 깐깐해요",
+    sub: "검역 신고와 반입 금지 품목",
+    tag: "입출국",
+    accent: "#2662A8",
+    accentLight: "#E1EBF6",
+    accentText: "#163F63",
+    modalC1: "#B7CDEA",
+    modalC2: "#E9F1FB",
+    modalAccent: "#2662A8",
+    modalAccentLight: "#CFE0F5",
+    facts: ["디지털 입국신고", "음식물 반입 주의", "미신고 시 벌금"],
+    desc: "호주는 생태계 보호를 위해 세계적으로도 손꼽히게 검역이 엄격한 나라예요. 신고를 빠뜨리면 큰 벌금을 물 수 있어요.",
+    warn: { title: "🚨 절대 숨기지 마세요", text: "육류, 과일, 씨앗, 견과류, 꿀, 흙 묻은 물건 등은 반드시 신고해야 해요. 미신고 적발 시 수백~수천 달러의 벌금이 부과될 수 있어요." },
+    tips: [
+      "입국 전 항공기 내에서 나눠주는 입국신고 관련 안내를 놓치지 말고 성실하게 작성하세요.",
+      "라면, 김, 한약, 홍삼 등도 신고 대상이 될 수 있어요. 애매하면 무조건 신고하는 게 안전해요.",
+      "등산화나 캠핑 장비에 묻은 흙, 식물 씨앗도 검역 대상이니 미리 털어내세요.",
+      "신고했다고 무조건 압수되는 게 아니라, 검사 후 통과되는 경우가 많으니 정직하게 신고하세요.",
+      "공항 곳곳에 검역견이 배치되어 있을 만큼 실제로 엄격하게 운영된다는 점을 기억하세요."
+    ]
+  },
+  {
+    emoji: "✈️",
+    title: "항공권 예약 & 장거리 비행 준비",
+    sub: "노선 선택과 시차 대처",
+    tag: "입출국",
+    accent: "#2662A8",
+    accentLight: "#E1EBF6",
+    accentText: "#163F63",
+    modalC1: "#B7CDEA",
+    modalC2: "#E9F1FB",
+    modalAccent: "#2662A8",
+    modalAccentLight: "#CFE0F5",
+    facts: ["비행 10시간 안팎", "환승시간 여유 있게", "시차 최대 몇 시간"],
+    desc: "한국-호주는 도시에 따라 9~11시간 이상 걸리는 장거리 비행이에요. 미리 준비하면 훨씬 편하게 도착할 수 있어요.",
+    warn: { title: "참고", text: "호주는 도시별 시차가 커요. 서머타임 시즌엔 차이가 더 벌어질 수 있으니 예약 전 목적지 시차를 꼭 확인하세요." },
+    tips: [
+      "시드니·멜버른·브리즈번 등은 직항 노선이 있지만, 퍼스 등 서부 지역은 경유가 필요할 수 있어요.",
+      "기내에서 물을 충분히 마시고 압박스타킹을 착용하면 장거리 비행 부종 예방에 도움이 돼요.",
+      "도착 시각 기준으로 현지 시간에 맞춰 기내에서부터 수면 패턴을 조절해보세요.",
+      "환승 시 최소 환승시간을 넉넉히(국제선 기준 2~3시간 이상) 잡는 게 안전해요.",
+      "장거리 비행이 부담스럽다면 통로 쪽 좌석이 스트레칭이나 화장실 이용에 유리해요."
+    ]
+  },
+  {
+    emoji: "🧳",
+    title: "짐 싸기, 계절이 반대예요",
+    sub: "남반구 기후에 맞춘 준비물",
+    tag: "입출국",
+    accent: "#2662A8",
+    accentLight: "#E1EBF6",
+    accentText: "#163F63",
+    modalC1: "#B7CDEA",
+    modalC2: "#E9F1FB",
+    modalAccent: "#2662A8",
+    modalAccentLight: "#CFE0F5",
+    facts: ["남반구는 계절 반대", "전압 230V", "자외선 차단 필수"],
+    desc: "호주는 남반구라 한국과 계절이 정반대예요. 여행 시기에 맞는 옷차림을 꼭 거꾸로 생각해보세요.",
+    warn: { title: "⚠️ 챙기면 안 되는 것", text: "육포, 생과일, 견과류, 씨앗류, 흙 묻은 신발이나 텐트는 세관에서 압수될 수 있어요. 짐을 쌀 때부터 제외하는 게 편해요." },
+    tips: [
+      "12~2월은 한여름, 6~8월은 한겨울이에요. 여행 시기의 계절을 거꾸로 생각하고 짐을 싸세요.",
+      "자외선이 매우 강한 나라라서 계절과 상관없이 선크림, 모자, 선글라스는 필수예요.",
+      "전압과 콘센트 모양이 우리나라와 완전히 다르니 멀티어댑터는 꼭 챙기세요. 자세한 내용은 아래 '콘센트' 카드를 확인하세요.",
+      "도시마다 일교차가 큰 편이라 얇은 옷을 여러 겹 겹쳐 입을 수 있게 준비하면 좋아요.",
+      "해변 도시가 많은 만큼 수영복과 여벌 옷을 넉넉히 챙기는 것도 추천해요."
+    ]
+  },
+  {
+    emoji: "🔌",
+    title: "콘센트 모양이 달라요, 돼지코 아니에요",
+    sub: "전압 230V & 삼각형 3핀 플러그",
+    tag: "입출국",
+    accent: "#2662A8",
+    accentLight: "#E1EBF6",
+    accentText: "#163F63",
+    modalC1: "#B7CDEA",
+    modalC2: "#E9F1FB",
+    modalAccent: "#2662A8",
+    modalAccentLight: "#CFE0F5",
+    facts: ["전압 230V/50Hz", "Type I (삼각 3핀)", "멀티어댑터 필수"],
+    desc: "호주 콘센트는 한국과 전압도, 플러그 모양도 완전히 달라요. 미리 챙기지 않으면 도착 첫날부터 충전이 막막해질 수 있어요.",
+    warn: { title: "⚠️ 미리 준비하세요", text: "한국에서 쓰는 원형 2핀 '돼지코' 어댑터는 호주에서 그대로 쓸 수 없어요. 출국 전 '호주·영국식(Type I)' 멀티탭이나 어댑터를 꼭 챙기세요." },
+    tips: [
+      "호주 표준 플러그는 Type I이에요. 위쪽 두 핀이 八자 모양(역삼각형)으로 비스듬히 벌어져 있고, 아래 접지핀이 하나 더 있는 구조예요.",
+      "한국·유럽에서 흔히 쓰는 원형 2핀(돼지코) 콘센트와는 모양 자체가 달라서, 변환 어댑터 없이는 꽂을 수조차 없어요.",
+      "전압도 230V/50Hz로 한국(220V/60Hz)과 약간 달라요. '110-240V' 지원 멀티볼트 기기라면 어댑터만 있어도 바로 사용할 수 있어요.",
+      "헤어드라이어, 고데기, 전기면도기처럼 전력 소모가 큰 기기는 제품 라벨에서 지원 전압 범위를 꼭 확인하세요. 미지원 기기는 별도의 변압기가 필요해요.",
+      "출국 전 공항 면세점, 다이소, 온라인 쇼핑몰에서 '호주·영국용(Type I/G) 멀티 어댑터'를 검색해 미리 구매해두면 편해요. 포트가 여러 개인 멀티탭형이면 동시에 여러 기기를 충전할 수 있어 더 유용해요."
+    ]
+  },
+  {
+    emoji: "🚆",
+    title: "대중교통 카드, 도시마다 달라요",
+    sub: "오팔카드 · 마이키카드 등 이용법",
+    tag: "교통",
+    accent: "#2E8BC0",
+    accentLight: "#E2F2FA",
+    accentText: "#145374",
+    modalC1: "#BFE3F5",
+    modalC2: "#EAF7FD",
+    modalAccent: "#2E8BC0",
+    modalAccentLight: "#D7EFFA",
+    facts: ["도시별 카드 다름", "공항서 바로 구매", "탭온·탭오프 필수"],
+    desc: "시드니 오팔카드, 멜버른 마이키카드처럼 도시마다 교통카드 시스템이 달라요. 미리 알아두면 헤매지 않아요.",
+    warn: { title: "참고", text: "카드를 찍고 타는 것뿐 아니라 내릴 때도 반드시 찍어야 정확한 요금이 청구돼요. 안 찍으면 최고 요금이 부과될 수 있어요." },
+    tips: [
+      "시드니는 Opal 카드, 멜버른은 Myki 카드, 브리즈번은 Go 카드를 사용해요. 공항이나 편의점에서 구매할 수 있어요.",
+      "신용·체크카드 컨택리스 결제로 바로 탑승 가능한 도시도 많아 실물 카드가 필수는 아니에요.",
+      "탑승 시(Tap on)와 하차 시(Tap off) 모두 단말기에 태그해야 정확한 거리 요금이 계산돼요.",
+      "하루 상한 요금제(Daily Cap)가 적용되는 경우가 많아 하루 종일 돌아다녀도 부담이 적어요.",
+      "트램·버스·기차 노선은 각 도시 공공교통 앱으로 실시간 확인하는 게 편리해요."
+    ]
+  },
+  {
+    emoji: "🚗",
+    title: "렌터카 & 좌측통행 운전",
+    sub: "운전석 방향과 로드트립 대비",
+    tag: "교통",
+    accent: "#2E8BC0",
+    accentLight: "#E2F2FA",
+    accentText: "#145374",
+    modalC1: "#BFE3F5",
+    modalC2: "#EAF7FD",
+    modalAccent: "#2E8BC0",
+    modalAccentLight: "#D7EFFA",
+    facts: ["운전석 오른쪽", "국제운전면허증 필요", "야생동물 돌발출현"],
+    desc: "호주는 한국과 반대로 좌측통행이에요. 운전대도 오른쪽에 있어서 처음엔 낯설 수 있어요.",
+    warn: { title: "⚠️ 조심하세요", text: "도시를 벗어나면 주유소가 수백 km 간격으로 드물게 있어요. 연료는 항상 절반 이하로 떨어지기 전에 채워두세요." },
+    tips: [
+      "국제운전면허증과 국내 운전면허증을 함께 지참해야 렌터카를 이용할 수 있어요.",
+      "좌측통행이라 회전교차로(라운드어바웃)에서는 시계 방향으로 진입해야 해요.",
+      "캥거루 같은 야생동물이 도로에 갑자기 뛰어드는 경우가 많아, 새벽·해질녘 운전은 특히 속도를 줄이세요.",
+      "장거리 운전 시 물과 비상 연료를 챙기고, 통신이 끊기는 구간이 있다는 점을 알아두세요.",
+      "고속도로 제한속도는 보통 시속 100~110km이며, 과속 단속 카메라가 많은 편이에요."
+    ]
+  },
+  {
+    emoji: "🏨",
+    title: "숙소 예약 & 지역 선택 팁",
+    sub: "시내 vs 근교, 성수기 예약",
+    tag: "숙소",
+    accent: "#2E9C9C",
+    accentLight: "#E1F5F5",
+    accentText: "#17605F",
+    modalC1: "#A9E2E2",
+    modalC2: "#E9FAFA",
+    modalAccent: "#2E9C9C",
+    modalAccentLight: "#C7EFEF",
+    facts: ["시티 vs 서버브", "체크인 보통 오후 2~3시", "성수기 조기 예약"],
+    desc: "호주 대도시는 시내(CBD)와 근교의 물가·분위기 차이가 커요. 여행 목적에 맞게 지역을 골라보세요.",
+    warn: { title: "참고", text: "예약 사이트에서 위치와 후기뿐 아니라 취소 정책도 꼭 확인하세요. 일부 저가 숙소는 환불 불가 조건이 붙는 경우가 많아요." },
+    tips: [
+      "시드니는 CBD 근처, 멜버른은 CBD나 사우스뱅크 쪽이 관광하기 편리해요.",
+      "해변 근처 숙소는 여름 성수기(12~2월) 가격이 크게 오르니 최소 2~3개월 전 예약을 추천해요.",
+      "호스텔도 안전하고 깨끗한 곳이 많아 배낭여행객에게 합리적인 선택이 될 수 있어요.",
+      "체크인은 보통 오후 2~3시, 체크아웃은 오전 10~11시인 곳이 많으니 시간을 미리 확인하세요.",
+      "에어비앤비 이용 시 아파트 단지 규정(소음, 방문객 제한 등)을 미리 확인하는 게 좋아요."
+    ]
+  },
+  {
+    emoji: "💳",
+    title: "환전 & 카드 결제 문화",
+    sub: "현금보다 카드, 팁은 선택",
+    tag: "통신환전",
+    accent: "#3DA88F",
+    accentLight: "#E3F6F1",
+    accentText: "#1F6553",
+    modalC1: "#B3E6D8",
+    modalC2: "#EAFBF6",
+    modalAccent: "#3DA88F",
+    modalAccentLight: "#CDF0E6",
+    facts: ["카드 결제 거의 필수", "현금 안 받는 곳도 있음", "팁 문화 없음"],
+    desc: "호주는 카드·컨택리스 결제 비중이 아주 높은 나라예요. 현금만 고집하면 오히려 불편할 수 있어요.",
+    warn: { title: "참고", text: "해외 결제 수수료가 없는 여행자 카드를 준비하면 공항 환전소보다 유리한 환율을 적용받는 경우가 많아요." },
+    tips: [
+      "대부분의 카페, 식당, 상점에서 카드나 스마트폰 탭 결제가 가능하고, 일부는 현금을 아예 받지 않아요.",
+      "공항 환전소보다 시내 환전소나 여행자 체크카드의 환율이 더 유리한 경우가 많아요.",
+      "식당에서 팁은 필수가 아니에요. 다만 서비스가 아주 만족스러웠다면 소액을 남기기도 해요.",
+      "일부 식당은 주말·공휴일에 추가 서비스료를 부과하니 영수증을 확인하세요.",
+      "소액이라도 ATM 인출 시 수수료가 발생할 수 있으니 가능하면 카드 결제를 우선 활용하세요."
+    ]
+  },
+  {
+    emoji: "📱",
+    title: "유심 & 인터넷 준비",
+    sub: "통신사 선택과 오지 통신 상황",
+    tag: "통신환전",
+    accent: "#3DA88F",
+    accentLight: "#E3F6F1",
+    accentText: "#1F6553",
+    modalC1: "#B3E6D8",
+    modalC2: "#EAFBF6",
+    modalAccent: "#3DA88F",
+    modalAccentLight: "#CDF0E6",
+    facts: ["공항서 유심 구매 가능", "주요 통신사 3곳", "이심(eSIM)도 가능"],
+    desc: "호주 3대 통신사는 Telstra, Optus, Vodafone이에요. 커버리지와 요금을 비교해서 고르면 좋아요.",
+    warn: { title: "참고", text: "아웃백이나 국립공원 등 오지로 갈수록 통신이 아예 안 터지는 구간이 많아요. 로드트립 전엔 오프라인 지도를 미리 다운받아 두세요." },
+    tips: [
+      "공항 도착홀이나 시내 편의점에서 선불 유심을 바로 구매해 개통할 수 있어요.",
+      "Telstra는 커버리지가 가장 넓어 아웃백·지방 여행에 유리하고, Optus·Vodafone은 도심에서 요금이 더 저렴한 편이에요.",
+      "이심(eSIM) 지원 휴대폰이라면 출국 전 앱으로 미리 구매해 도착 즉시 사용할 수 있어요.",
+      "대부분의 카페·쇼핑몰에 무료 와이파이가 잘 되어 있어 데이터를 아낄 수 있어요.",
+      "로밍보다 현지 유심이 데이터 대비 훨씬 저렴한 경우가 많아요."
+    ]
+  },
+  {
+    emoji: "🌡️",
+    title: "날씨는 정반대, 계절 감각을 바꾸세요",
+    sub: "남반구 기후와 지역별 차이",
+    tag: "문화매너",
+    accent: "#4F9C82",
+    accentLight: "#E3F5EE",
+    accentText: "#2C6B54",
+    modalC1: "#BEE8D8",
+    modalC2: "#EAFAF3",
+    modalAccent: "#4F9C82",
+    modalAccentLight: "#D3F0E4",
+    facts: ["12~2월 여름", "6~8월 겨울", "지역별 기후 차 큼"],
+    desc: "호주는 남반구라 계절이 한국과 정반대예요. 지역에 따라 기후도 열대부터 온대까지 크게 달라요.",
+    warn: { title: "참고", text: "북쪽 케언즈·다윈 등은 열대기후라 11~4월이 우기(사이클론 시즌)예요. 이 시기 여행이라면 일정에 여유를 두세요." },
+    tips: [
+      "시드니·멜버른 등 남동부는 한국의 봄가을처럼 온화하지만 일교차가 큰 편이에요.",
+      "12~2월 한여름엔 40도 가까이 오르는 날도 있으니 폭염 대비를 해야 해요.",
+      "멜버른은 하루에 사계절이 다 있다는 말이 있을 정도로 날씨 변화가 심해요. 겉옷은 꼭 챙기세요.",
+      "북부 열대 지역은 우기(11~4월)와 건기(5~10월)로 나뉘며, 우기엔 스콜성 소나기가 잦아요.",
+      "여행 전 목적지의 계절과 평균 기온을 반드시 검색해서 옷차림을 준비하세요."
+    ]
+  },
+  {
+    emoji: "🙏",
+    title: "문화 & 매너, 이것만은 알아두세요",
+    sub: "캐주얼한 인사와 줄서기 문화",
+    tag: "문화매너",
+    accent: "#4F9C82",
+    accentLight: "#E3F5EE",
+    accentText: "#2C6B54",
+    modalC1: "#BEE8D8",
+    modalC2: "#EAFAF3",
+    modalAccent: "#4F9C82",
+    modalAccentLight: "#D3F0E4",
+    facts: ["캐주얼한 인사문화", "줄서기 철저", "실내 흡연 금지"],
+    desc: "호주는 격식보다 편안함을 중시하는 캐주얼한 문화예요. 기본 매너만 지키면 어디서든 자연스럽게 어울릴 수 있어요.",
+    warn: { title: "참고", text: "대중교통, 상점, 은행 등 어디서나 줄서기 문화가 매우 엄격해요. 새치기는 큰 실례로 여겨져요." },
+    tips: [
+      "처음 만나는 사람에게도 캐주얼한 인사를 편하게 건네는 문화예요.",
+      "문을 잡아주거나 먼저 지나가게 배려하는 스몰 매너가 일상적으로 자리잡혀 있어요.",
+      "실내는 물론 대부분의 공공장소·해변에서도 흡연이 금지된 구역이 많으니 표지판을 확인하세요.",
+      "식당에서는 자리를 안내받을 때까지 입구에서 기다리는 게 일반적이에요.",
+      "대중교통이나 공공장소에서는 큰 소리로 통화하거나 떠드는 것을 실례로 여겨요."
+    ]
+  },
+  {
+    emoji: "☀️",
+    title: "자외선, 상상 이상으로 강해요",
+    sub: "선크림과 시간대별 대처법",
+    tag: "안전건강",
+    accent: "#2F7D5C",
+    accentLight: "#DEF0E7",
+    accentText: "#1B4E3A",
+    modalC1: "#A8DCC3",
+    modalC2: "#E5F6EE",
+    modalAccent: "#2F7D5C",
+    modalAccentLight: "#C4E9D8",
+    facts: ["자외선지수 세계 최상위권", "한낮 외출 자제", "SPF50+ 권장"],
+    desc: "호주는 오존층이 얇아 자외선지수가 세계적으로 손꼽히게 높은 나라예요. 흐린 날에도 방심은 금물이에요.",
+    warn: { title: "🚨 꼭 기억하세요", text: "한여름 오전 10시~오후 3시는 자외선이 가장 강한 시간대예요. 이 시간대 장시간 야외활동은 피하고, 2~3시간마다 선크림을 덧발라 주세요." },
+    tips: [
+      "SPF50+ 자외선 차단제를 외출 최소 20분 전에 바르고, 2~3시간마다 덧발라야 효과가 유지돼요.",
+      "챙 넓은 모자, 선글라스, 얇은 긴팔 옷으로 물리적으로 햇빛을 막는 것도 중요해요.",
+      "흐리거나 선선한 날에도 자외선지수는 여전히 높을 수 있으니 방심하지 마세요.",
+      "해변에서는 그늘막이나 파라솔을 적극 활용하고, 아이들은 특히 더 세심하게 챙겨주세요.",
+      "화상을 입었다면 시원한 물로 식히고 진정 젤을 바르며, 물집이 생기면 병원 진료를 받으세요."
+    ]
+  },
+  {
+    emoji: "🐍",
+    title: "야생동물, 멀리서 눈으로만",
+    sub: "해파리 · 상어 · 뱀 안전수칙",
+    tag: "안전건강",
+    accent: "#2F7D5C",
+    accentLight: "#DEF0E7",
+    accentText: "#1B4E3A",
+    modalC1: "#A8DCC3",
+    modalC2: "#E5F6EE",
+    modalAccent: "#2F7D5C",
+    modalAccentLight: "#C4E9D8",
+    facts: ["해변 경고 표지판 확인", "캥거루 도로 돌발출현", "독충·독사 서식"],
+    desc: "호주는 독특한 야생동물의 천국이지만, 몇몇은 사람에게 위험할 수 있어요. 안전 수칙만 지키면 문제없어요.",
+    warn: { title: "🚨 즉시 응급조치", text: "해파리에 쏘였다면 문지르지 말고 식초를 부어 촉수를 비활성화한 뒤 즉시 병원으로 가세요. 뱀에 물렸다면 압박붕대로 감고 움직이지 않은 채 000에 신고하세요." },
+    tips: [
+      "해변에 게시된 깃발과 경고 표지판을 반드시 확인하고 지정 구역에서만 수영하세요.",
+      "북부 지역 강·습지에는 악어가 서식할 수 있어요. 악어 주의 표지판이 있는 곳은 절대 접근하지 마세요.",
+      "풀숲이나 등산로에서는 두꺼운 신발을 신고, 뱀이나 거미를 손으로 만지지 마세요.",
+      "캥거루나 웜뱃 등은 귀여워 보여도 야생동물이라 먹이를 주거나 만지려 하지 마세요.",
+      "호주 응급 신고번호는 000(트리플 제로)이에요. 여행 중 반드시 기억해두세요."
+    ]
+  },
+  {
+    emoji: "🏥",
+    title: "응급상황 & 의료 대비",
+    sub: "여행자보험과 응급 신고번호",
+    tag: "안전건강",
+    accent: "#2F7D5C",
+    accentLight: "#DEF0E7",
+    accentText: "#1B4E3A",
+    modalC1: "#A8DCC3",
+    modalC2: "#E5F6EE",
+    modalAccent: "#2F7D5C",
+    modalAccentLight: "#C4E9D8",
+    facts: ["응급신고 000", "해외여행자보험 필수", "약국에서 상비약 구매"],
+    desc: "호주는 의료비가 상당히 비싼 나라예요. 여행자 보험 없이 병원에 가면 큰 비용이 나올 수 있어요.",
+    warn: { title: "⚠️ 미리 준비하세요", text: "호주는 한국 건강보험이 적용되지 않아 응급실 진료비만 수백 달러가 나올 수 있어요. 출국 전 반드시 해외여행자보험에 가입하세요." },
+    tips: [
+      "응급상황에는 000(트리플 제로)으로 전화해 경찰·소방·구급차를 요청할 수 있어요.",
+      "가벼운 감기약, 진통제, 소화제 등은 슈퍼마켓이나 약국에서 쉽게 구매할 수 있어요.",
+      "여행자 보험 가입 시 응급실, 입원, 휴대품 도난까지 보장 범위를 꼼꼼히 확인하세요.",
+      "평소 복용하는 처방약이 있다면 영문 처방전이나 진단서를 함께 챙기는 게 좋아요.",
+      "주요 도시에는 24시간 응급실을 운영하는 대형 병원이 있으니 숙소 근처 병원 위치를 미리 확인해두면 안심이 돼요."
+    ]
+  },
+  {
+    emoji: "☕",
+    title: "카페 문화 & 식사 팁",
+    sub: "브런치와 예약 문화",
+    tag: "음식쇼핑",
+    accent: "#1F6F91",
+    accentLight: "#DFEEF5",
+    accentText: "#124A61",
+    modalC1: "#A9D2E5",
+    modalC2: "#E7F4FA",
+    modalAccent: "#1F6F91",
+    modalAccentLight: "#C3E2EF",
+    facts: ["플랫화이트 발상지", "브런치 문화 발달", "식당 예약 권장"],
+    desc: "호주는 커피 문화가 상당히 발달한 나라예요. 특히 '플랫 화이트'는 호주에서 시작된 커피 메뉴로 알려져 있어요.",
+    warn: { title: "참고", text: "인기 브런치 카페나 레스토랑은 주말 웨이팅이 긴 경우가 많아요. 사전 예약이 가능한 곳이라면 미리 예약해두는 걸 추천해요." },
+    tips: [
+      "플랫 화이트, 롱블랙 등 호주식 커피 메뉴 이름이 낯설 수 있으니 미리 알아두면 주문이 편해요.",
+      "브런치 문화가 발달해 있어 오전 9시~오후 2시 사이 브런치 카페들이 특히 붐벼요.",
+      "레스토랑 예약은 온라인 예약 플랫폼으로 쉽게 할 수 있어요.",
+      "해산물, 특히 굴과 새우 요리는 호주 여행에서 놓치면 아쉬운 메뉴로 꼽혀요.",
+      "슈퍼마켓을 이용하면 외식비를 아끼면서 현지 식재료도 경험할 수 있어요."
+    ]
+  },
+  {
+    emoji: "🛍️",
+    title: "면세 쇼핑 & 세금 환급(TRS)",
+    sub: "GST 10% 환급 받는 방법",
+    tag: "음식쇼핑",
+    accent: "#1F6F91",
+    accentLight: "#DFEEF5",
+    accentText: "#124A61",
+    modalC1: "#A9D2E5",
+    modalC2: "#E7F4FA",
+    modalAccent: "#1F6F91",
+    modalAccentLight: "#C3E2EF",
+    facts: ["GST 10%", "출국 시 환급 가능", "AUD 300 이상 구매 시"],
+    desc: "호주에서 쇼핑하면 상품 가격에 10% 부가세(GST)가 포함돼 있는데, 조건을 맞추면 출국 시 환급받을 수 있어요.",
+    warn: { title: "참고", text: "같은 매장에서 300호주달러(GST 포함) 이상 구매하고, 출국 60일 이내 영수증을 지참해야 세금환급제도를 이용할 수 있어요." },
+    tips: [
+      "TRS(Tourist Refund Scheme)는 공항 출국장 내 TRS 부스에서 신청할 수 있어요.",
+      "영수증, 여권, 구매한 물품을 함께 챙겨가야 해요. 위탁수하물 전이라면 실물 확인이 필요할 수 있어요.",
+      "고가의 전자제품, 액세서리, 명품 등을 구매했다면 환급 대상인지 미리 확인해보세요.",
+      "출국 전 시간을 넉넉히 잡아야 해요. TRS 부스에 줄이 긴 경우가 많아요.",
+      "관련 앱으로 미리 정보를 입력해두면 현장에서 처리 시간을 줄일 수 있어요."
+    ]
+  }
+];
+
+function buildGrid() {
+  const grid = document.getElementById('grid');
+  DATA.forEach((item, i) => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.dataset.tag = item.tag;
+    card.dataset.idx = i;
+    card.style.setProperty('--accent', item.accent);
+    card.style.animationDelay = (i * 0.05) + 's';
+    card.innerHTML = `
+      <span class="card-emoji">${item.emoji}</span>
+      <div class="card-title">${item.title}</div>
+      <div class="card-sub">${item.sub}</div>
+      <span class="card-tag" style="background:${item.accentLight};color:${item.accentText}">${tagLabel(item.tag)}</span>
+    `;
+    card.addEventListener('click', () => openModal(i));
+    grid.appendChild(card);
+  });
+}
+
+function tagLabel(tag) {
+  const map = {
+    '입출국': '입출국',
+    '교통': '교통',
+    '숙소': '숙소',
+    '통신환전': '통신·환전',
+    '문화매너': '문화·매너',
+    '안전건강': '안전·건강',
+    '음식쇼핑': '음식·쇼핑'
+  };
+  return map[tag] || tag;
+}
+
+function openModal(i) {
+  const d = DATA[i];
+  const overlay = document.getElementById('overlay');
+  const top = document.getElementById('modal-top');
+  const body = document.getElementById('modal-body');
+
+  top.style.background = `linear-gradient(135deg, ${d.modalC1}, ${d.modalC2})`;
+  document.getElementById('modal-emoji').textContent = d.emoji;
+  document.getElementById('modal-title').textContent = d.title;
+  document.getElementById('modal-desc').textContent = d.desc;
+
+  let html = '';
+
+  html += `<div class="fact-badge">`;
+  d.facts.forEach(f => {
+    html += `<span class="fact-pill" style="background:${d.modalAccentLight};color:${d.accentText}">${f}</span>`;
+  });
+  html += `</div>`;
+
+  html += `<div class="warn-box"><strong>${d.warn.title}</strong>${d.warn.text}</div>`;
+
+  html += `<div class="section-label">실전 꿀팁</div>`;
+  html += `<ul class="tip-list">`;
+  d.tips.forEach((tip, idx) => {
+    html += `<li>
+      <span class="tip-num" style="background:${d.modalAccent}">${idx+1}</span>
+      <span>${tip}</span>
+    </li>`;
+  });
+  html += `</ul>`;
+
+  body.innerHTML = html;
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  requestAnimationFrame(() => {
+    document.getElementById('modal').scrollTop = 0;
+  });
+}
+
+function closeModal(e) {
+  if (e.target === document.getElementById('overlay')) closeModalDirect();
+}
+function closeModalDirect() {
+  document.getElementById('overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+/* ===== FILTER STATE ===== */
+let activeTag = 'all';
+
+function applyFilters() {
+  document.querySelectorAll('.card').forEach(card => {
+    const tagOk = activeTag === 'all' || card.dataset.tag === activeTag;
+    if (tagOk) card.classList.remove('hidden');
+    else card.classList.add('hidden');
+  });
+}
+
+function filterCards(tag) {
+  activeTag = tag;
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  event.target.classList.add('active');
+  applyFilters();
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    closeModalDirect();
+    closeSearch();
+  }
+});
+
+/* ===== ZOOM ===== */
+let currentZoom = 1;
+const ZOOM_STEP = 0.15;
+const ZOOM_MIN = 0.6;
+const ZOOM_MAX = 1.8;
+
+function applyZoom() {
+  const grid = document.getElementById('grid');
+  grid.style.transform = `scale(${currentZoom})`;
+  grid.style.transformOrigin = 'top center';
+  grid.style.marginBottom = currentZoom < 1
+    ? `${(currentZoom - 1) * grid.offsetHeight}px`
+    : '0';
+}
+
+function zoomIn() {
+  if (currentZoom >= ZOOM_MAX) return;
+  currentZoom = Math.min(ZOOM_MAX, +(currentZoom + ZOOM_STEP).toFixed(2));
+  applyZoom();
+}
+function zoomOut() {
+  if (currentZoom <= ZOOM_MIN) return;
+  currentZoom = Math.max(ZOOM_MIN, +(currentZoom - ZOOM_STEP).toFixed(2));
+  applyZoom();
+}
+
+function toggleFullscreen() {
+  const btn = document.querySelector('.ctrl-btn[title="전체 화면"], .ctrl-btn[title="전체 화면 종료"]');
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen();
+    if (btn) { btn.textContent = '⊠'; btn.title = '전체 화면 종료'; }
+  } else {
+    document.exitFullscreen();
+    if (btn) { btn.textContent = '⤢'; btn.title = '전체 화면'; }
+  }
+}
+
+document.addEventListener('fullscreenchange', () => {
+  const btn = document.querySelector('.ctrl-btn[title="전체 화면"], .ctrl-btn[title="전체 화면 종료"]');
+  if (!btn) return;
+  if (!document.fullscreenElement) {
+    btn.textContent = '⤢';
+    btn.title = '전체 화면';
+  }
+});
+
+/* ===== SEARCH ===== */
+function openSearch() {
+  document.getElementById('searchOverlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  setTimeout(() => document.getElementById('searchInput').focus(), 100);
+  renderSearchHint();
+}
+function closeSearch() {
+  document.getElementById('searchOverlay').classList.remove('open');
+  document.getElementById('searchInput').value = '';
+  document.getElementById('searchResults').innerHTML = '';
+  document.body.style.overflow = '';
+}
+function closeSearchOverlay(e) {
+  if (e.target === document.getElementById('searchOverlay')) closeSearch();
+}
+
+function renderSearchHint() {
+  const el = document.getElementById('searchResults');
+  el.innerHTML = `
+    <div class="search-hint">자주 찾는 키워드</div>
+    ${['비자', '유심', '환전', '날씨', '안전', '팁', '숙소', '자외선', '응급', '렌터카'].map(k =>
+      `<span onclick="setQuery('${k}')" style="display:inline-block;margin:4px;padding:6px 14px;background:#E2F2FA;border-radius:999px;font-size:13px;color:var(--brown);cursor:pointer;transition:background 0.15s;" onmouseover="this.style.background='#BFE3F5'" onmouseout="this.style.background='#E2F2FA'">${k}</span>`
+    ).join('')}
+  `;
+}
+
+function setQuery(q) {
+  document.getElementById('searchInput').value = q;
+  doSearch();
+}
+
+function highlight(text, query) {
+  if (!query) return text;
+  const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  return text.replace(new RegExp(escaped, 'gi'), m => `<mark>${m}</mark>`);
+}
+
+function doSearch() {
+  const query = document.getElementById('searchInput').value.trim();
+  const el = document.getElementById('searchResults');
+
+  if (!query) { renderSearchHint(); return; }
+
+  const q = query.toLowerCase();
+  const results = DATA.map((d, i) => {
+    const searchTarget = [d.title, d.sub, d.desc, tagLabel(d.tag), ...d.tips, d.warn.text, ...d.facts].join(' ').toLowerCase();
+    if (!searchTarget.includes(q)) return null;
+
+    const matchedTip = d.tips.find(t => t.toLowerCase().includes(q));
+    const snippet = matchedTip || d.desc;
+
+    return { idx: i, d, snippet };
+  }).filter(Boolean);
+
+  if (results.length === 0) {
+    el.innerHTML = `
+      <div class="search-empty">
+        <span>🔎</span>
+        <strong>"${query}"</strong>에 대한 결과가 없어요.<br>
+        다른 키워드로 검색해 보세요.
+      </div>`;
+    return;
+  }
+
+  let html = `<div class="result-count">"${query}" 검색 결과 ${results.length}개</div>`;
+  results.forEach(({ idx, d, snippet }) => {
+    html += `
+      <div class="result-card" onclick="pickResult(${idx})">
+        <span class="result-emoji">${d.emoji}</span>
+        <div class="result-info">
+          <div class="result-title">${highlight(d.title, query)}</div>
+          <div class="result-sub">${highlight(d.sub, query)}</div>
+          <div class="result-snippet">${highlight(snippet, query)}</div>
+        </div>
+        <span class="result-tag">${tagLabel(d.tag)}</span>
+      </div>`;
+  });
+  el.innerHTML = html;
+}
+
+function pickResult(idx) {
+  closeSearch();
+  openModal(idx);
+}
+
+buildGrid();
+</script>
+</body>
+</html>
